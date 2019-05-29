@@ -3,6 +3,7 @@
       <div class="wrap-banner">
         <div class="main-title">
           <h2>
+            <SignIn />
             <vue-typer text='Get Set Travel!'
               :repeat='infinity'
               :shuffle='false'
@@ -43,12 +44,13 @@
 <script>
 // @ is an alias to /src
 import { VueTyper } from 'vue-typer'
-
+import SignIn from "@/components/SignIn.vue"
 
 export default {
   name: "home",
   components: {
-    VueTyper
+    VueTyper,
+    SignIn
   }
 };
 </script>

@@ -335,9 +335,18 @@
     <button @click="$refs.stepper.previous()">Back</button>
 </div>
 <div v-if="step === 4">
-    APP
-    <button @click="$refs.stepper.next()">Next</button>
+<div>
+    <l-map :zoom="zoom" :center="center" style="height: 100vh; width: 100vw;">
+    <l-tileLayer :url="url" :attribution="attribution"></l-tileLayer>
+    <l-marker 
+    v-for="(marker,index) in markers" :key="index"
+    :lat-lng=marker></l-marker>       
+      </l-map>
+<div class="switchButtons">
     <button @click="$refs.stepper.previous()">Back</button>
+    <button @click="$refs.stepper.next()">Next</button>
+</div>
+</div>
 </div>
 <div v-if="step === 5">
     APP
@@ -355,6 +364,8 @@ import Datepicker from 'vuejs-datepicker'
 import moment from 'moment'
 import { mapfields } from 'vuex-map-fields'
 import HeartIcon from "vue-material-design-icons/Heart.vue"
+import MapBox from 'mapbox-gl-vue'
+import {LMap, LTileLayer, LMarker } from 'vue2-leaflet';
 
 const cards= [
             'Malls','Bars','Tourism',
@@ -373,12 +384,21 @@ var show=[
     false,false,false,
     false,false,false,
 ]
+
+var latlong=
+[{lat: 12.9763472,lng: 77.5929284},
+{lat: 12.800285,lng:	77.5770474},
+{lat: 12.9427052,lng: 77.5694287}]
 export default {
 name: "Stepper",
   components: {
     VStepper,
     Datepicker, 
-    HeartIcon 
+    HeartIcon,
+    MapBox,
+    LMap,
+    LTileLayer,
+    LMarker 
   },
   
   data:function(){
@@ -392,6 +412,12 @@ name: "Stepper",
           selectedCards: -1,
           places:[],
           show:show,
+          map: null,
+           zoom: 12,
+            center: [12.9427052,77.5694287],
+            url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+            markers: latlong,
       }
   },
   methods:{
@@ -431,11 +457,13 @@ name: "Stepper",
           this.addPlace(arg);
           this.invertShow(arg)
       }
-  }
+  },
+
 }
 </script>
 
 <style scoped>
+@import "~leaflet/dist/leaflet.css";
 .card-image {
   position: absolute;
   left: -9999px;
@@ -577,7 +605,10 @@ h5{
     justify-content: center;
     align-items: center;  
 }
-
+#map {
+  width: 100%;
+  height: 500px;
+}
 </style>
 
 
