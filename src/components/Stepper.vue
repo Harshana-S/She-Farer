@@ -362,9 +362,8 @@
 import { VStepper } from 'vue-stepper-component'
 import Datepicker from 'vuejs-datepicker'
 import moment from 'moment'
-import { mapfields } from 'vuex-map-fields'
+//import { mapfields } from 'vuex-map-fields'
 import HeartIcon from "vue-material-design-icons/Heart.vue"
-import MapBox from 'mapbox-gl-vue'
 import {LMap, LTileLayer, LMarker } from 'vue2-leaflet';
 
 const cards= [
@@ -395,7 +394,6 @@ name: "Stepper",
     VStepper,
     Datepicker, 
     HeartIcon,
-    MapBox,
     LMap,
     LTileLayer,
     LMarker 
@@ -486,7 +484,7 @@ name: "Stepper",
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 0px;
-  overflow: hidden;
+  overflow-x: hidden;
   box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.5);
 }
 .card-row {

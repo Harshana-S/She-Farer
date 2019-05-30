@@ -1,4 +1,4 @@
-# travel-vue
+# travel-for-package
 
 ## Project setup
 ```

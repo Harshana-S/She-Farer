@@ -58,7 +58,7 @@ export default {
 <style>
 body{
   background-color: rgb(3, 10, 10);
-  overflow-y: hidden;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: hidden;
 }
  .main-title {
